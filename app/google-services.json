@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "785222737290",
+    "project_id": "housework-ad895",
+    "storage_bucket": "housework-ad895.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785222737290:android:7ece0d940253bffee77c73",
+        "android_client_info": {
+          "package_name": "com.example.myapplicationandstudio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2wazHjds3VGqrcYGqmtjx3VDPAU_uBkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
