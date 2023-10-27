@@ -13,13 +13,16 @@
         android:theme="@style/Theme.MyApplicationAndStudio"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".Update"
             android:exported="false" />
         <activity
             android:name=".show"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

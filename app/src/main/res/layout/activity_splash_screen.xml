@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SpalshScreen">
+
+
+    <View
+        android:id="@id/gradiente"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.3"
+        android:background="@drawable/gradiente"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp"></View>
+
+    <View
+        android:id="@+id/gradiente"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </View>
+
+    <ImageView
+        android:id="@+id/backgroundSplash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/bota"
+        android:layout_width="227dp"
+        android:layout_height="289dp"
+        android:src="@drawable/huella_de_zapato"
+        app:layout_constraintBottom_toTopOf="@id/constrainHorizontal2"
+        app:layout_constraintEnd_toEndOf="@id/constrainVertical2"
+        app:layout_constraintStart_toStartOf="@id/constrainVertical1"
+        app:layout_constraintTop_toTopOf="@+id/appNameSplash" />
+    <TextView
+        android:id="@id/appNameSplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:fontFamily="@font/mondayrain"
+        android:textColor="@color/Eerieblack"
+        android:textSize="39dp"
+        app:layout_constraintStart_toStartOf="@id/constrainVertical1"
+        app:layout_constraintEnd_toEndOf="@id/constrainVertical2"
+        app:layout_constraintBottom_toTopOf="@id/constrainHorizontal1"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/constrainVertical1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.19951338" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/constrainVertical2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/constrainHorizontal1"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/constrainHorizontal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
