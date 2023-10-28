@@ -14,7 +14,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/img"
         android:textColorHint="@color/white"
-        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <Button
@@ -25,10 +25,10 @@
         android:text="mostrar"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline10"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintVertical_bias="0.69" />
 
     <Button
         android:id="@+id/enviar"
@@ -38,10 +38,10 @@
         android:text="enviar"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintVertical_bias="0.69" />
 
     <EditText
         android:id="@+id/password"
@@ -83,6 +83,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:text="HOUSE"
+        android:fontFamily="@font/mondayrain"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
@@ -98,6 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="WORKS"
+        android:fontFamily="@font/mondayrain"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
@@ -126,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.81" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -178,8 +180,30 @@
         android:text="goToUpdate"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_bias="0.69" />
 
+    <TextView
+        android:id="@+id/registerbutton"
+        android:layout_width="118dp"
+        android:layout_height="48dp"
+        android:background="#4D291A04"
+        android:clickable="true"
+        android:contentDescription="Registrarse como nuevo usuario"
+        android:focusable="true"
+        android:padding="8dp"
+        android:text="Registrarse"
+        android:textAlignment="center"
+        android:textColor="@color/celadon"
+        android:textSize="14dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline10"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.414" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

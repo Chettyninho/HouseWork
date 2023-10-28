@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        registrarse();
     }
 
     public void insertValue(View v){
@@ -86,6 +87,18 @@ public class MainActivity extends AppCompatActivity {
     public void changeToUpdate(View view){
         Intent nIntent = new Intent(MainActivity.this, Update.class);
         startActivity(nIntent);
+    }
+
+    public void registrarse() {
+        TextView textViewButton = findViewById(R.id.registerbutton);
+        textViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Aquí puedes iniciar la nueva actividad
+                Intent intent = new Intent(MainActivity.this, Registro.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
