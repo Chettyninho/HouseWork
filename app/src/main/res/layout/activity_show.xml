@@ -18,9 +18,11 @@
         app:layout_constraintStart_toStartOf="@+id/guideline16"
         app:layout_constraintTop_toBottomOf="@+id/scrollView" />
 
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
+        android:autofillHints="creditCardExpirationDate"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
@@ -33,8 +35,21 @@
             android:id="@+id/fillContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+            <!-- Agrega contenido descriptivo dentro del ScrollView -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Este es el contenido descriptivo del ScrollView."
+                android:contentDescription="Este ScrollView contiene información importante." />
+
+            <!-- Agrega otros elementos dentro del ScrollView con descripciones relevantes -->
+
+        </LinearLayout>
     </ScrollView>
+
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"

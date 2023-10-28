@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SpalshScreen">
+    tools:context=".SplashScreen">
 
 
     <View
@@ -36,7 +36,7 @@
         android:id="@+id/bota"
         android:layout_width="227dp"
         android:layout_height="289dp"
-        android:src="@drawable/huella_de_zapato"
+        android:src="@drawable/logoescobarecogedor"
         app:layout_constraintBottom_toTopOf="@id/constrainHorizontal2"
         app:layout_constraintEnd_toEndOf="@id/constrainVertical2"
         app:layout_constraintStart_toStartOf="@id/constrainVertical1"

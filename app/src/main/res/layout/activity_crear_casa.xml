@@ -23,8 +23,8 @@
 
     <EditText
         android:id="@+id/nombre_casa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="207dp"
+        android:layout_height="58dp"
         android:ems="10"
         android:hint="NOMBRE"
         android:inputType="textEmailAddress"
@@ -105,10 +105,11 @@
 
     <EditText
         android:id="@+id/numeroCasa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="211dp"
+        android:layout_height="65dp"
         android:ems="10"
         android:inputType="numberSigned"
+        android:hint="HOUSE_CODE"
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
         app:layout_constraintStart_toStartOf="@+id/guideline21"

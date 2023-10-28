@@ -2,16 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <gradient
-<<<<<<< Updated upstream
-        android:startColor="@color/UltraViolet"
-        android:centerColor="@color/TigersEye"
-
-        android:endColor="@color/CadetGrey"
-=======
-        android:startColor="@color/celadon"
-        android:centerColor="@color/cambridge__blue"
-        android:endColor="@color/Eerieblack"
->>>>>>> Stashed changes
-        android:angle="90"
-        ></gradient>
+        android:startColor="@color/FrenchGrey"
+        android:centerColor="@color/Grey"
+        android:endColor="@color/TigerEye"
+        android:angle="90"/>
 </shape>
