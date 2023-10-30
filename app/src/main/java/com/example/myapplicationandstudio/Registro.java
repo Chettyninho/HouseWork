@@ -1,14 +1,24 @@
 package com.example.myapplicationandstudio;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Registro extends AppCompatActivity {
 
@@ -16,6 +26,8 @@ public class Registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        /*FirebaseApp.initializeApp(this);*/
+
     }
 
     public void insertValue(View v) {
@@ -57,8 +69,31 @@ public class Registro extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "FALLO AL INSERTAR", Toast.LENGTH_LONG).show();
             }
-
-
         }
+
+        FirebaseFirestore firestoreDb = FirebaseFirestore.getInstance();
+        Map<String, String> users = new HashMap<>();
+        users.put("name", name);
+        users.put("surName",surname);
+        users.put("email", email);
+        users.put("userName", userName);
+        users.put("password",password);
+
+        firestoreDb.collection("HouseWorks").document("users")
+                .set(users)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("_DEBUG", "DEBUG");
+                    }
+                })
+
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("ERROR", e.getMessage());
+                    }
+                });
+
     }
 }

@@ -21,8 +21,11 @@ public class dataBase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE USERS" +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "email varchar(35) NOT NULL," +
-                "password VARCHAR(25) NOT NULL)");
+                "name varchar(45) NOT NULL," +
+                "surname VARCHAR(45) NOT NULL," +
+                "email varchar(45) NOT NULL," +
+                "userName varchar(45) NOT NULL," +
+                "password  varchar(45) NOT NULL)");
     }
 
 
