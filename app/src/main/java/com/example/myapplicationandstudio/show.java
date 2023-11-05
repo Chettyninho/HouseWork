@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class show extends AppCompatActivity {
 
@@ -56,7 +57,10 @@ public class show extends AppCompatActivity {
         // Función para ver si la tabla contiene algo
         if(cursor.moveToFirst()){
             do {
-                final String email = cursor.getString(1);
+                // Obtén el valor del correo electrónico
+                final String nombre = cursor.getString(1);
+                final String email = cursor.getString(3);
+
 
                 // Crea un nuevo LinearLayout para cada registro
                 LinearLayout recordLayout = new LinearLayout(this);
@@ -64,34 +68,56 @@ public class show extends AppCompatActivity {
 
                 // Crea un TextView para mostrar el email
                 TextView data = new TextView(this);
-                data.setText("Nombre: " + email);
+                data.setText("Nombre: " + nombre);
 
                 // Crea un botón para cada registro
-                Button button = new Button(this);
-                button.setText("Editar"); // Puedes personalizar el texto del botón
+                Button buttonUpdate = new Button(this);
+                buttonUpdate.setText("Editar"); // Puedes personalizar el texto del botón
+                Button delete = new Button(this);
+                delete.setText("Eliminar"); // Puedes personalizar el texto del botón
 
-                // Configura un OnClickListener para el botón
-                button.setOnClickListener(new View.OnClickListener() {
+
+                // Configura un OnClickListener para el boton update
+                buttonUpdate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Obtén el valor del correo electrónico
-                        final String email = cursor.getString(1);
+
 
                         // Crea un Intent para abrir la pantalla de actualización
                         Intent intent = new Intent(show.this, Update.class);
 
                         // Pasa el valor del correo electrónico como un extra al Intent
-                        intent.putExtra("email", email);
+                        //intent.putExtra("email", email);
 
                         // Inicia la actividad de actualización
                         startActivity(intent);
                     }
+
+
                 });
 
 
+                // Configura un OnClickListener para el boton delete
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Elimina el usuario de la base de datos
+                        SQLiteDatabase deleteDb = new dataBase(show.this).getWritableDatabase();
+                        //deleteDb.delete("USERS", "email = ?", new String[]{String.valueOf(email)});
+
+                        deleteDb.execSQL("delete from users where email = '" + email + "';");
+                        deleteDb.close();
+                        // Elimina la vista del registro de la interfaz de usuario
+                        layout.removeView(recordLayout);
+
+                        Toast.makeText(show.this, "Usuario eliminado", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 // Agrega el TextView y el botón al LinearLayout del registro
                 recordLayout.addView(data);
-                recordLayout.addView(button);
+                recordLayout.addView(buttonUpdate);
+                recordLayout.addView(delete);
 
                 // Agrega el LinearLayout del registro al contenedor
                 layout.addView(recordLayout);
