@@ -69,6 +69,8 @@ public class Registro extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "FALLO AL INSERTAR", Toast.LENGTH_LONG).show();
             }
+        }else{
+            Toast.makeText(this,"db es nulo",Toast.LENGTH_LONG);
         }
 
         FirebaseFirestore firestoreDb = FirebaseFirestore.getInstance();

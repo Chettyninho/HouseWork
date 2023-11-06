@@ -87,7 +87,7 @@ public class show extends AppCompatActivity {
                         Intent intent = new Intent(show.this, Update.class);
 
                         // Pasa el valor del correo electrónico como un extra al Intent
-                        //intent.putExtra("email", email);
+                        intent.putExtra("email", email);
 
                         // Inicia la actividad de actualización
                         startActivity(intent);
