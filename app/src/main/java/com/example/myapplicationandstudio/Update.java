@@ -54,15 +54,16 @@ public class Update extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 actualizarDatos(view);
+                changeToMain(view);
             }
         });
 
     }
     public void actualizarDatos(View v){
-        //obtenemos el valor de los editText
+        // Obtén los valores de los EditText
         EditText name_editText = findViewById(R.id.inputName);
         String newName = name_editText.getText().toString();
-        EditText  surName_editText = findViewById(R.id.inputSurname);
+        EditText surName_editText = findViewById(R.id.inputSurname);
         String newSurname = surName_editText.getText().toString();
         EditText email_editText = findViewById(R.id.inputEmail);
         String newEmail = email_editText.getText().toString();
@@ -71,31 +72,24 @@ public class Update extends AppCompatActivity {
         EditText Pasword_editText = findViewById(R.id.inputPassword);
         String newPassword = Pasword_editText.getText().toString();
 
-//no va joder mecaguen la puta .
-
-        //consulta a la base de datos para insertar.
+        // Consulta a la base de datos para actualizar
         dataBase aux = new dataBase(Update.this);
         SQLiteDatabase db = aux.getWritableDatabase();
-        //consulta para comparar con la bbdd
-        Cursor cursor = db.rawQuery("SELECT email FROM USERS", null);
 
-        if(cursor.moveToFirst())
-            do {
-                if (db != null && (!newName.isEmpty() || !newSurname.isEmpty() || !newEmail.isEmpty() || !newUserName.isEmpty() || !newPassword.isEmpty())) {
-                    String emailFromCursor = cursor.getString(1);
-                    String updateQuery = "UPDATE USERS" +
-                            " SET name = '" + newName + "'," +
-                            " surName = '" + newSurname + "'," +
-                            " email = '" + newEmail + "'," +
-                            " userName = '" + newUserName + "'," +
-                            " password = '" + newPassword + "'" +
-                            " WHERE email = '" + emailFromCursor + "';";
-                    db.execSQL(updateQuery);
-                }
-            } while (cursor.moveToNext());
-
-        }
+        String updateQuery = "UPDATE USERS" +
+                " SET name = '" + newName + "'," +
+                " surName = '" + newSurname + "'," +
+                " userName = '" + newUserName + "'," +
+                " password = '" + newPassword + "'" +
+                " WHERE email = '" + newEmail + "';"; // Actualiza solo el usuario con el correo electrónico específico
+        db.execSQL(updateQuery);
     }
+
+    public void changeToMain(View view) {
+        Intent nIntent = new Intent(Update.this, MainActivity.class);
+        startActivity(nIntent);
+    }
+}
 
 
         // Accede al botón por su ID

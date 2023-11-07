@@ -88,6 +88,8 @@
         android:backgroundTint="@color/TigerEye"
         android:fontFamily="@font/mondayrain"
         android:gravity="center"
+        android:editable="false"
+        android:focusable="false"
         android:hint="E-MAIL"
         android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
