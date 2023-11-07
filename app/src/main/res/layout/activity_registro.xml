@@ -6,26 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".Registro">
 
-    <View
-        android:id="@+id/rectangle_5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="#EE924F"
-        app:layout_constraintBottom_toTopOf="@+id/guideline30"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imgeBackgroundRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img"
+        android:textColorHint="@color/white"
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="300dp"
+        android:layout_height="604dp"
+        android:background="#51000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toTopOf="@+id/guideline30">
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="164dp"
         android:layout_height="40dp"
-        android:fontFamily="@font/mondayrain"
+        android:layout_marginTop="30sp"
+        android:fontFamily="@font/latoregular"
         android:text="Registrate!!"
         android:textAlignment="center"
-        android:textColor="@color/TigerEye"
+        android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline32"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
@@ -34,78 +45,85 @@
 
     <EditText
         android:id="@+id/inputName"
-        android:layout_width="239dp"
-        android:layout_height="40dp"
-        android:textSize="18dp"
-        android:hint="NOMBRE"
-        android:gravity="center"
-        android:fontFamily="@font/mondayrain"
+        android:layout_width="220dp"
+        android:layout_height="58dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:backgroundTint="@color/TigerEye"
+        android:background="@drawable/borders"
+        android:fontFamily="@font/latoregular"
+        android:gravity="center"
+        android:hint="NOMBRE"
+        android:textColorHint="@color/white"
+        android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toTopOf="@+id/guideline32" />
 
     <EditText
         android:id="@+id/inputUserName"
-        android:layout_width="239dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:textSize="18dp"
-        android:hint="USERNAME"
-        android:fontFamily="@font/mondayrain"
-        android:gravity="center"
+        android:layout_width="220dp"
+        android:layout_height="58dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:backgroundTint="@color/TigerEye"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/borders"
+        android:fontFamily="@font/latoregular"
+        android:gravity="center"
+        android:hint="USERNAME"
+        android:textColorHint="@color/white"
+        android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
     <EditText
         android:id="@+id/inputPassword"
-        android:layout_width="239dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:textSize="18dp"
-        android:hint="CONTRASEÑA"
-        android:fontFamily="@font/mondayrain"
-        android:gravity="center"
+        android:layout_width="220dp"
+        android:layout_height="58dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:backgroundTint="@color/TigerEye"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/borders"
+        android:fontFamily="@font/latoregular"
+        android:gravity="center"
+        android:hint="CONTRASEÑA"
+        android:textColorHint="@color/white"
+        android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toBottomOf="@+id/inputUserName" />
 
     <EditText
         android:id="@+id/inputEmail"
-        android:layout_width="239dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:textSize="18dp"
-        android:hint="E-MAIL"
-        android:fontFamily="@font/mondayrain"
-        android:gravity="center"
+        android:layout_width="220dp"
+        android:layout_height="58dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:backgroundTint="@color/TigerEye"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/borders"
+        android:fontFamily="@font/latoregular"
+        android:gravity="center"
+        android:hint="E-MAIL"
+
+        android:textColorHint="@color/white"
+        android:textSize="18dp"
+
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toBottomOf="@+id/inputSurname" />
 
     <EditText
         android:id="@+id/inputSurname"
-        android:layout_width="239dp"
-        android:layout_height="40dp"
+        android:layout_width="220dp"
+        android:layout_height="58dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/TigerEye"
-        android:fontFamily="@font/mondayrain"
+        android:background="@drawable/borders"
+        android:fontFamily="@font/latoregular"
         android:gravity="center"
         android:hint="APELLIDO"
+        android:textColorHint="@color/white"
         android:textSize="18dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
@@ -130,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline31"
@@ -144,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.30" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline33"
@@ -158,21 +176,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.74" />
 
     <Button
         android:id="@+id/buttonRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
+        android:background="#009A5858"
+        android:gravity="center"
+        android:onClick="insertValue"
+        android:text="Enviar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        android:gravity="center"
-        android:background="@drawable/redondeobotones"
-        android:onClick="insertValue"
-        app:layout_constraintBottom_toTopOf="@+id/guideline33"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toTopOf="@+id/guideline34" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
