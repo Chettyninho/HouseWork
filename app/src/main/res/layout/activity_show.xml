@@ -39,9 +39,11 @@
 
             <!-- Agrega contenido descriptivo dentro del ScrollView -->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Este es el contenido descriptivo del ScrollView."
+                android:fontFamily="@font/latoregular"
+                android:textSize="20dp"
+                android:text="¿Quién forma parte de HW?"
                 android:contentDescription="Este ScrollView contiene información importante." />
 
             <!-- Agrega otros elementos dentro del ScrollView con descripciones relevantes -->

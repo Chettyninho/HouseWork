@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -65,7 +66,8 @@ public class Registro extends AppCompatActivity {
                 emailEditText.setText("");
                 userNameEditText.setText("");
                 passwordEditText.setText("");
-
+                Intent nIntent = new Intent(Registro.this, MainActivity.class);
+                startActivity(nIntent);
             } else {
                 Toast.makeText(this, "FALLO AL INSERTAR", Toast.LENGTH_LONG).show();
             }
@@ -88,6 +90,7 @@ public class Registro extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Log.d("_DEBUG", "DEBUG");
                     }
+
                 })
 
                 .addOnFailureListener(new OnFailureListener() {
@@ -97,5 +100,12 @@ public class Registro extends AppCompatActivity {
                     }
                 });
 
+
+
+    }
+
+    public void changeToMain(View view) {
+        Intent nIntent = new Intent(Registro.this, MainActivity.class);
+        startActivity(nIntent);
     }
 }

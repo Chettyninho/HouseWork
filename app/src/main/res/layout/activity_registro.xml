@@ -11,20 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/img"
+        android:src="@drawable/image"
         android:textColorHint="@color/white"
         tools:layout_editor_absoluteX="57dp"
         tools:layout_editor_absoluteY="0dp" />
 
+
     <FrameLayout
         android:id="@+id/container"
-        android:layout_width="300dp"
-        android:layout_height="604dp"
-        android:background="#51000000"
+        android:layout_width="290dp"
+        android:layout_height="627dp"
+        android:background="#4AFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toTopOf="@+id/guideline30">
+
+        <ImageButton
+
+            android:id="@+id/exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="3dp"
+            android:backgroundTint="#00FFFFFF"
+            android:onClick="changeToMain"
+            app:srcCompat="@drawable/baseline_exit_to_app_24" />
 
     </FrameLayout>
 
@@ -32,16 +44,15 @@
         android:id="@+id/textView"
         android:layout_width="164dp"
         android:layout_height="40dp"
-        android:layout_marginTop="30sp"
         android:fontFamily="@font/latoregular"
-        android:text="Registrate!!"
+        android:text="Sign In"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline32"
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toTopOf="@+id/guideline30" />
+        app:layout_constraintTop_toTopOf="@+id/container" />
 
     <EditText
         android:id="@+id/inputName"
@@ -192,6 +203,13 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

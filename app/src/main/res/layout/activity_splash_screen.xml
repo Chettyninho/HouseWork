@@ -7,65 +7,128 @@
     tools:context=".SplashScreen">
 
 
-
-
-
-
-    <ImageView
-        android:id="@+id/backgroundSplash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/bota"
-        android:layout_width="227dp"
-        android:layout_height="289dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/logoescobarecogedor"
-        app:layout_constraintBottom_toTopOf="@id/constrainHorizontal2"
-        app:layout_constraintEnd_toEndOf="@id/constrainVertical2"
-        app:layout_constraintStart_toStartOf="@id/constrainVertical1"
-        app:layout_constraintTop_toTopOf="@+id/appNameSplash" />
+
+        app:layout_constraintBottom_toTopOf="@+id/constrainHorizontal2"
+        app:layout_constraintEnd_toStartOf="@+id/constrainVertical2"
+        app:layout_constraintStart_toStartOf="@+id/constrainVertical1"
+        app:layout_constraintTop_toTopOf="@+id/constrainHorizontal1" /> -->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/img"
+        android:padding="0dp"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="16dp" />
+
     <TextView
-        android:id="@id/appNameSplash"
+        android:id="@+id/bota"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/latoregular"
         android:text="@string/app_name"
-        android:fontFamily="@font/mondayrain"
-        android:textColor="@color/Eerieblack"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline37"
+        app:layout_constraintEnd_toStartOf="@+id/constrainVertical2"
+        app:layout_constraintStart_toStartOf="@+id/constrainVertical1"
+        app:layout_constraintTop_toTopOf="@+id/constrainHorizontal1" />
+
+    <TextView
+        android:id="@+id/texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/latoregular"
+        android:text="Bienvenido a"
+        android:textColor="@color/white"
         android:textSize="39dp"
-        app:layout_constraintStart_toStartOf="@id/constrainVertical1"
-        app:layout_constraintEnd_toEndOf="@id/constrainVertical2"
-        app:layout_constraintBottom_toTopOf="@id/constrainHorizontal1"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/guideline38"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/texto2"
+        android:layout_width="261dp"
+        android:layout_height="201dp"
+        android:fontFamily="@font/latoregular"
+        android:text="Donde un hogar ordenado...."
+        android:textColor="@color/white"
+        android:textSize="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/constrainHorizontal2"
+        app:layout_constraintStart_toStartOf="@+id/constrainVertical1" />
+
+    <TextView
+        android:id="@+id/texto3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/latoregular"
+        android:text="Powered BY DAM"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/constrainVertical2"
+        app:layout_constraintStart_toStartOf="@+id/constrainVertical1"
+        app:layout_constraintTop_toTopOf="@+id/constrainHorizontal2" />
+    <TextView
+        android:id="@+id/posible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/latoregular"
+
+        android:text="es posible"
+        android:textColor="@color/white"
+        android:textSize="39dp"
+
+        app:layout_constraintStart_toStartOf="@+id/constrainVertical1"
+        app:layout_constraintTop_toTopOf="@+id/constrainHorizontal2" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/constrainVertical1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.19951338" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/constrainVertical2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.81" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/constrainHorizontal1"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.23" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/constrainHorizontal2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.73" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.31847134" />
 
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.23312102" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
