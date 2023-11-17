@@ -144,5 +144,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void showTareas(View view) {
+        Intent intent = new Intent(MainActivity.this, ShowTareas.class);
+        startActivity(intent);
+    }
 
+    public void crearTareas(View view) {
+        Intent intent = new Intent(MainActivity.this, CrearTarea.class);
+        startActivity(intent);
+    }
 }

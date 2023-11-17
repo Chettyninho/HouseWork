@@ -6,32 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".crearCasa">
 
-    <View
-        android:id="@+id/posit"
-        android:layout_width="279dp"
-        android:layout_height="145dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="#FFEF9D"
-        android:elevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline23"
-        app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
 
     <!-- Auto layout, variables, and unit scale are not yet supported -->
-
-    <EditText
-        android:id="@+id/nombre_casa"
-        android:layout_width="207dp"
-        android:layout_height="58dp"
-        android:ems="10"
-        android:hint="NOMBRE"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/guideline22"
-        app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/guideline23" />
 
 
 
@@ -46,6 +23,88 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <FrameLayout
+        android:id="@+id/posit"
+        android:layout_width="279dp"
+        android:layout_height="145dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#FFEF9D"
+        android:elevation="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline23"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintStart_toStartOf="@+id/guideline21"
+        app:layout_constraintTop_toTopOf="@+id/guideline25"
+        />
+
+    <TextView
+        android:id="@+id/textoPosit"
+        android:layout_width="205dp"
+        android:layout_height="96dp"
+        android:elevation="10dp"
+        android:text="Deberías ponerle un nombre a tu casa..."
+        android:fontFamily="@font/mondayrain"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toBottomOf="@+id/posit"
+        app:layout_constraintEnd_toEndOf="@+id/posit"
+        app:layout_constraintStart_toStartOf="@+id/posit"
+        app:layout_constraintTop_toTopOf="@+id/posit">
+
+    </TextView>
+
+
+
+
+    <EditText
+        android:id="@+id/inputName"
+        android:layout_width="220dp"
+        android:layout_height="58dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/borders"
+        android:fontFamily="@font/latoregular"
+        android:gravity="center"
+        android:hint="NOMBRE"
+        android:textColorHint="@color/Grey"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline22"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintStart_toStartOf="@+id/guideline21"
+        app:layout_constraintTop_toTopOf="@+id/guideline23" />
+
+
+    <TextView
+        android:id="@+id/code"
+        android:layout_width="220dp"
+        android:layout_height="58dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/borders"
+        android:fontFamily="@font/latoregular"
+        android:gravity="center"
+        android:hint="House_code"
+        android:textColorHint="@color/Grey"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintStart_toStartOf="@+id/guideline21"
+        app:layout_constraintTop_toTopOf="@+id/guideline22" />
+
+    <Button
+        android:id="@+id/buttonEnviarCrearCasa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:background="@drawable/gradiente"
+        app:layout_constraintBottom_toTopOf="@+id/guideline27"
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintStart_toStartOf="@+id/guideline21"
+        app:layout_constraintTop_toTopOf="@+id/guideline24" />
+
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline20"
@@ -102,30 +161,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.10123119" />
-
-    <EditText
-        android:id="@+id/numeroCasa"
-        android:layout_width="211dp"
-        android:layout_height="65dp"
-        android:ems="10"
-        android:inputType="numberSigned"
-        android:hint="HOUSE_CODE"
-        app:layout_constraintBottom_toTopOf="@+id/guideline24"
-        app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/guideline22" />
-
-    <Button
-        android:id="@+id/buttonEnviarCrearCasa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enviar"
-        android:background="@drawable/gradiente"
-        app:layout_constraintBottom_toTopOf="@+id/guideline27"
-        app:layout_constraintEnd_toStartOf="@+id/guideline20"
-        app:layout_constraintStart_toStartOf="@+id/guideline21"
-        app:layout_constraintTop_toTopOf="@+id/guideline24" />
-
 
     <!-- Auto layout, variables, and unit scale are not yet supported -->
 

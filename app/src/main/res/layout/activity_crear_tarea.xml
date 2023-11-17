@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearTarea">
+
+    <!-- Contenedor principal con bordes redondeados y color de fondo -->
+    <LinearLayout
+        android:id="@+id/contenedorPrincipal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/background_light"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- Título de la tarea -->
+
+        <!-- Descripción de la tarea -->
+        <EditText
+            android:id="@+id/tituloTarea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/borderstarea"
+            android:gravity="center"
+            android:hint="TITULO TAREA"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/descripcionTarea"
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="start"
+            android:hint="DESCRIPCION TAREA"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18sp" />
+
+        <!-- Contenedor horizontal para el icono del calendario y la fecha seleccionada -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Icono del calendario -->
+            <ImageButton
+                android:id="@+id/fechaLimiteIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/baseline_calendar_month_24" />
+
+            <!-- Texto para mostrar la fecha seleccionada -->
+            <EditText
+                android:id="@+id/fechaSeleccionada"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:hint="dd/mm/aaaa"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- DatePicker -->
+        <DatePicker
+            android:id="@+id/fechaLimitePicker"
+            android:layout_width="322dp"
+            android:layout_height="361dp"
+            android:autofillHints="creditCardExpirationDate"
+            android:calendarViewShown="true"
+            android:scaleX="0.85"
+            android:scaleY="0.85"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/botonGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="97dp"
+            android:layout_gravity="end"
+            android:layout_marginRight="8dp"
+            android:text="+"
+            android:textSize="50dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fechaLimitePicker" />
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.51709986" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

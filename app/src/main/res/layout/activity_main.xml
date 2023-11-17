@@ -200,4 +200,24 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.49384406" />
 
+    <Button
+        android:id="@+id/buttonShowTareas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showTareas"
+        android:text="Mostrar Tareas"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonMadeTarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="crearTareas"
+        android:text="Crear Tareas"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

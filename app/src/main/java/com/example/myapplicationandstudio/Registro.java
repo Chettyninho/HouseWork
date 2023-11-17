@@ -68,6 +68,32 @@ public class Registro extends AppCompatActivity {
                 passwordEditText.setText("");
                 Intent nIntent = new Intent(Registro.this, MainActivity.class);
                 startActivity(nIntent);
+
+                FirebaseFirestore firestoreDb = FirebaseFirestore.getInstance();
+                Map<String, String> users = new HashMap<>();
+                users.put("name", name);
+                users.put("surName",surname);
+                users.put("email", email);
+                users.put("userName", userName);
+                users.put("password",password);
+
+                firestoreDb.collection("HouseWorks").document("users")
+                        .set(users)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.d("_DEBUG", "DEBUG");
+                            }
+
+                        })
+
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d("ERROR", e.getMessage());
+                            }
+                        });
+
             } else {
                 Toast.makeText(this, "FALLO AL INSERTAR", Toast.LENGTH_LONG).show();
             }
@@ -75,30 +101,7 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this,"db es nulo",Toast.LENGTH_LONG);
         }
 
-        FirebaseFirestore firestoreDb = FirebaseFirestore.getInstance();
-        Map<String, String> users = new HashMap<>();
-        users.put("name", name);
-        users.put("surName",surname);
-        users.put("email", email);
-        users.put("userName", userName);
-        users.put("password",password);
 
-        firestoreDb.collection("HouseWorks").document("users")
-                .set(users)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Log.d("_DEBUG", "DEBUG");
-                    }
-
-                })
-
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("ERROR", e.getMessage());
-                    }
-                });
 
 
 
