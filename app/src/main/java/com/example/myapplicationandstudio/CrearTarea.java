@@ -1,6 +1,8 @@
 package com.example.myapplicationandstudio;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
@@ -12,15 +14,20 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Calendar;
 import java.util.Locale;
 
 public class CrearTarea extends AppCompatActivity {
     private DatePicker fechaLimitePicker;
     private ImageButton fechaLimiteIcon;
-    private TextView fechaSeleccionada;
+   // private TextView fechaSeleccionada;
     private boolean bull = false;
+    private TextView editTextFecha; // El campo de texto donde se mostrará la fecha
+    private DatePickerDialog datePickerDialog; // El diálogo del DatePicker
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +35,7 @@ public class CrearTarea extends AppCompatActivity {
         // Obtén referencias a los elementos de tu diseño
         fechaLimitePicker = findViewById(R.id.fechaLimitePicker);
         fechaLimiteIcon = findViewById(R.id.fechaLimiteIcon);
-        fechaSeleccionada = findViewById(R.id.fechaSeleccionada);
+        editTextFecha = findViewById(R.id.editTextFecha);
         Button botonGuardar = findViewById(R.id.botonGuardar);
 
         //OnClickListener en el ImageButton
@@ -36,15 +43,19 @@ public class CrearTarea extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Muestra u oculta el DatePicker según el estado actual de bull
-                if (bull == false) {
-                    fechaLimitePicker.setVisibility(View.VISIBLE);
-                    bull = true;
-                } else {
-                    fechaLimitePicker.setVisibility(View.INVISIBLE);
-                    bull = false;
-                }
+                mostrarDatePickerDialog();
+
             }
         });
+
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // Este método se llama cuando el usuario selecciona una fecha
+                String fechaSeleccionada = day + "/" + (month + 1) + "/" + year; // El mes comienza desde 0
+                editTextFecha.setText(fechaSeleccionada);
+            }
+        }, 2023, 0, 1);
 
         // Inicializa el DatePicker
         fechaLimitePicker.init(
@@ -61,12 +72,14 @@ public class CrearTarea extends AppCompatActivity {
                         fechaLimitePicker.setVisibility(View.INVISIBLE);
                     }
                 });
-// Establece un OnClickListener en el botón para guardar en la base de datos
+        // Establece un OnClickListener en el botón para guardar en la base de datos
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Llama a la función para guardar en la base de datos
                 guardarEnBaseDeDatos();
+                Intent intent = new Intent(CrearTarea.this, ShowTareas.class);
+                startActivity(intent);
             }
         });
     }
@@ -75,7 +88,7 @@ public class CrearTarea extends AppCompatActivity {
         // Obtiene los datos que deseas guardar
         String nombre = ((EditText) findViewById(R.id.tituloTarea)).getText().toString();
         String descripcion = ((EditText) findViewById(R.id.descripcionTarea)).getText().toString();
-        String fecha = fechaSeleccionada.getText().toString();
+        String fecha = editTextFecha.getText().toString();
         int estado = 0;
 
         // Crea un objeto ContentValues para almacenar los datos
@@ -88,26 +101,26 @@ public class CrearTarea extends AppCompatActivity {
         dataBase aux = new dataBase(CrearTarea.this);
         // Abre la base de datos para escritura
         SQLiteDatabase db = aux.getWritableDatabase();
-try{
-        // Inserta la nueva tarea en la base de datos
-        long newRowId = db.insert("TAREAS", null, values);
+        try {
+            // Inserta la nueva tarea en la base de datos
+            long newRowId = db.insert("TAREAS", null, values);
 
-        // Verifica si la inserción fue exitosa
-        if (newRowId != -1) {
-            // Tarea insertada con éxito
-            mostrarToast("Tarea insertada con éxito, ID: " + newRowId);
-            // Realiza otras acciones o muestra mensajes según sea necesario
-        } else {
-            // Error al insertar la tarea
-            mostrarToast("Error al insertar la tarea en la base de datos");
-            Log.d("DEBUG", "Nombre: " + nombre + ", Descripción: " + descripcion + ", Fecha: " + fecha + ", Estado: " + estado);
-            Log.e("ERROR_DDBB", "Error al insertar la tarea en la base de datos. Fila ID: " + newRowId);
+            // Verifica si la inserción fue exitosa
+            if (newRowId != -1) {
+                // Tarea insertada con éxito
+                mostrarToast("Tarea insertada con éxito, ID: " + newRowId);
+                // Realiza otras acciones o muestra mensajes según sea necesario
+            } else {
+                // Error al insertar la tarea
+                mostrarToast("Error al insertar la tarea en la base de datos");
+                Log.d("DEBUG", "Nombre: " + nombre + ", Descripción: " + descripcion + ", Fecha: " + fecha + ", Estado: " + estado);
+                Log.e("ERROR_DDBB", "Error al insertar la tarea en la base de datos. Fila ID: " + newRowId);
 
-            // Muestra mensajes de error o realiza acciones adicionales en caso de fallo
+                // Muestra mensajes de error o realiza acciones adicionales en caso de fallo
+            }
+        } catch (SQLiteException e) {
+            Log.e("SQL_ERROR", "Error al insertar en la base de datos: " + e.getMessage());
         }
-} catch (SQLiteException e) {
-    Log.e("SQL_ERROR", "Error al insertar en la base de datos: " + e.getMessage());
-}
         // Cierra la base de datos
         db.close();
     }
@@ -129,8 +142,11 @@ try{
         String fechaFormateada = formattedDay + "/" + formattedMonth + "/" + year;
 
         // Establece el texto en el TextView
-        fechaSeleccionada.setText(fechaFormateada);
+        editTextFecha.setText(fechaFormateada);
     }
 
+    private void mostrarDatePickerDialog() {
+        datePickerDialog.show();
+    }
 
 }

@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             if (cursor != null && cursor.getCount() > 0) {
                 // El usuario existe en la base de datos
                 Toast.makeText(this, "Usuario existe", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, show.class);
+                Intent intent = new Intent(MainActivity.this, ShowTareas.class);
                 startActivity(intent);
             } else {
                 // El usuario no existe en la base de datos
@@ -144,10 +144,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void showTareas(View view) {
-        Intent intent = new Intent(MainActivity.this, ShowTareas.class);
-        startActivity(intent);
-    }
+
 
     public void crearTareas(View view) {
         Intent intent = new Intent(MainActivity.this, CrearTarea.class);
