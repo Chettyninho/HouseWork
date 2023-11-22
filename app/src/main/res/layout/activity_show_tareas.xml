@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline42"
         app:layout_constraintStart_toStartOf="@+id/guideline45"
         app:layout_constraintTop_toTopOf="parent" />
-    
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -35,13 +35,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="10dp">
 
             <LinearLayout
                 android:id="@+id/fillContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:contentDescription="Descripción accesible del texto de ejemplo" ></LinearLayout>
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
