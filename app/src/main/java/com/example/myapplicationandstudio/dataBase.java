@@ -12,7 +12,7 @@ public class dataBase extends SQLiteOpenHelper {
 
 
 
-    //CONSTRUCTOR
+    //CONSTRUCTORz
     public dataBase(@Nullable Context context) {
         super(context, NAME_DB, null, VERSION_DB);
     }
