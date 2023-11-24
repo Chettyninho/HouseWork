@@ -1,16 +1,18 @@
 package com.example.myapplicationandstudio;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,41 +43,64 @@ public class ShowTareas extends AppCompatActivity {
 
                 // Agrega un margen inferior para separación entre contenedores
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) taskTextView.getLayoutParams();
-                params.setMargins(0, 0, 0, 16); // Establece el valor deseado para el margen inferior
+                params.setMargins(0, 6, 0, 18); // Establece el valor deseado para el margen inferior
                 taskTextView.setLayoutParams(params);
+// Guardar la descripción como una propiedad del TextView
+                taskTextView.setTag(descripcion);
 
-                //taskTextView.setVisibility(View.VISIBLE);
+// Agrega el OnClickListener y el OnTouchListener a taskTextView
+                taskTextView.setOnTouchListener(new View.OnTouchListener() {
+                    // Declaramos el valor de initial x en un primer momento
+                    float initialX = 0;
 
-                // Combina el nombre y la descripción usando SpannableString
-               // SpannableString spannableString = new SpannableString("Nombre: " + nombre );
-
-                // Aplica un estilo diferente a la descripción (opcional)
-                //spannableString.setSpan(new StyleSpan(Typeface.ITALIC), spannableString.length() - descripcion.length(), spannableString.length(), 0);
-
-                // Establece el texto combinado en taskTextView
-                //taskTextView.setText(spannableString);
-
-                // Crea un nuevo TextView para cada descripción
-                //final TextView descTextView = new TextView(this);
-                //applyDescTextViewStyle(descTextView);
-                //descTextView.setText("Descripción: " + descripcion);
-                //descTextView.setVisibility(View.GONE); // Establece inicialmente la visibilidad en GONE
-
-                // Agrega el OnClickListener a taskTextView para alternar la visibilidad de descTextView
-                taskTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        if (taskTextView.getText().equals(nombre)) {
-                            // Si el texto actual es el nombre, cambiar a nombre + descripción
-                            taskTextView.setText(nombre + "\nDescripción: " + descripcion);
-                        } else {
-                            // Si el texto actual ya incluye la descripción, cambiar a solo nombre
-                            taskTextView.setText(nombre);
+                    public boolean onTouch(View v, MotionEvent event) {
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                // Guarda la posición inicial al tocar la pantalla
+                                initialX = event.getX();
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                // Compara la posición inicial y final para determinar el gesto
+                                float finalX = event.getX();
+                                // Diferencia entre la posición inicial y final
+                                float deltaX = finalX - initialX;
+
+                                if (deltaX > 100) {
+                                    // Deslizamiento hacia la derecha
+                                    // Lógica para marcar la tarea como realizada en la bbdd
+                                    Toast.makeText(ShowTareas.this, "Tarea realizada", Toast.LENGTH_SHORT).show();
+
+                                    // Animación de desplazamiento
+                                    ObjectAnimator animator = ObjectAnimator.ofFloat(taskTextView, "translationX", 0f, 200f);
+                                    animator.setDuration(500); // Duración de la animación en milisegundos
+                                    animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                                    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                        @Override
+                                        public void onAnimationUpdate(ValueAnimator animation) {
+                                            // Este método se llama en cada fotograma de la animación
+                                            // Puedes realizar acciones adicionales aquí si es necesario
+                                        }
+                                    });
+                                    animator.start();
+                                } else {
+                                    // Si no hubo deslizamiento, realiza la lógica de onClick
+                                    // Si el texto actual es el nombre, cambiar a nombre + descripción
+                                    if (taskTextView.getText().equals(nombre)) {
+                                        taskTextView.setText(nombre + "\nDescripción: " + descripcion);
+                                    } else {
+                                        // Si el texto actual ya incluye la descripción, cambiar a solo nombre
+                                        taskTextView.setText(nombre);
+                                    }
+                                }
+                                break;
                         }
+                        return true;
                     }
                 });
 
-                // Agrega los TextView al LinearLayout
+
+// Agrega los TextView al LinearLayout
                 layout.addView(taskTextView);
 
             } while (cursor.moveToNext());
@@ -117,7 +142,6 @@ public class ShowTareas extends AppCompatActivity {
 
         //textView.setPadding(8,12,8,12);
     }
-
     // Método para obtener un fondo con bordes naranjas y redondeados
     private Drawable getRoundOrangeBorder() {
         GradientDrawable shape = new GradientDrawable();
