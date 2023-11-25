@@ -1,12 +1,17 @@
 package com.example.myapplicationandstudio;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -14,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ShowTareas extends AppCompatActivity {
@@ -27,19 +33,20 @@ public class ShowTareas extends AppCompatActivity {
 
     public void showElements() {
         SQLiteDatabase db = new dataBase(this).getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM TAREAS where estado = 0", null);
         LinearLayout layout = findViewById(R.id.fillContent);
 
         // Función para ver si la tabla contiene algo
         if (cursor.moveToFirst()) {
             do {
                 // Obtén el valor del nombre de la tarea y la descripción
+                final int id_tarea = cursor.getInt(0);
                 final String nombre = cursor.getString(1);
                 final String descripcion = cursor.getString(2);
 
                 // Nuevo TextView para cada tarea
                 final TextView taskTextView = new TextView(this);
-                applyTaskTextViewStyle(taskTextView, nombre); // Aplicar estilo y texto al TextView
+                applyTaskTextViewStyle(taskTextView, nombre, id_tarea); // Aplicar estilo y texto al TextView
 
                 // Agrega un margen inferior para separación entre contenedores
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) taskTextView.getLayoutParams();
@@ -69,21 +76,103 @@ public class ShowTareas extends AppCompatActivity {
                                 if (deltaX > 100) {
                                     // Deslizamiento hacia la derecha
                                     // Lógica para marcar la tarea como realizada en la bbdd
+                                    marcarTareaComoRealizada(id_tarea);
                                     Toast.makeText(ShowTareas.this, "Tarea realizada", Toast.LENGTH_SHORT).show();
 
+                                    // Obtener el ancho de la pantalla
+                                    DisplayMetrics displayMetrics = new DisplayMetrics();
+                                    getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                                    int screenWidth = displayMetrics.widthPixels;
+
                                     // Animación de desplazamiento
-                                    ObjectAnimator animator = ObjectAnimator.ofFloat(taskTextView, "translationX", 0f, 200f);
-                                    animator.setDuration(500); // Duración de la animación en milisegundos
+                                    ObjectAnimator animator = ObjectAnimator.ofFloat(taskTextView, "translationX", 0f, screenWidth);
+                                    animator.setDuration(375); // Duración de la animación en milisegundos
                                     animator.setInterpolator(new AccelerateDecelerateInterpolator());
                                     animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                         @Override
                                         public void onAnimationUpdate(ValueAnimator animation) {
                                             // Este método se llama en cada fotograma de la animación
+
+                                            // Obtener el valor actual de la propiedad de animación (en este caso, la posición X)
+                                            float animatedValue = (float) animation.getAnimatedValue();
+
                                             // Puedes realizar acciones adicionales aquí si es necesario
+                                            // Por ejemplo, cambiar la opacidad del TextView en función de su posición
+                                            float alpha = 1 - (animatedValue / screenWidth); // Cálculo de la opacidad
+                                            taskTextView.setAlpha(alpha); // Establecer la opacidad
                                         }
                                     });
                                     animator.start();
-                                } else {
+
+
+                                    // Después de la animación, quitar la tarea de la vista y reconstruir la vista
+                                    animator.addListener(new AnimatorListenerAdapter() {
+                                        @Override
+                                        public void onAnimationEnd(Animator animation) {
+                                            layout.removeView(taskTextView);
+                                            // Reconstruir la vista
+                                            // showElements();
+                                        }
+                                    });
+                                } else if (deltaX < 0){
+                                        // Deslizamiento hacia la izquierda
+                                        // Lógica para marcar la tarea como eliminada en la bbdd
+
+                                        // Mostrar un AlertDialog de confirmación
+                                        new AlertDialog.Builder(ShowTareas.this)
+                                                .setTitle("Eliminar Tarea")
+                                                .setMessage("¿Está seguro de que desea eliminar esta tarea?")
+                                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        // Usuario hizo clic en Aceptar
+                                                        eliminarTarea(id_tarea);
+                                                        Toast.makeText(ShowTareas.this, "Tarea eliminada", Toast.LENGTH_SHORT).show();
+
+                                                        // Obtener el ancho de la pantalla
+                                                        DisplayMetrics displayMetrics = new DisplayMetrics();
+                                                        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                                                        int screenWidth = displayMetrics.widthPixels;
+
+                                                        // Animación de desplazamiento
+                                                        ObjectAnimator animator = ObjectAnimator.ofFloat(taskTextView, "translationX", 0f, -screenWidth);
+                                                        animator.setDuration(375); // Duración de la animación en milisegundos
+                                                        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                                                        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                                            @Override
+                                                            public void onAnimationUpdate(ValueAnimator animation) {
+                                                                // Este método se llama en cada fotograma de la animación
+
+                                                                // Obtener el valor actual de la propiedad de animación (en este caso, la posición X)
+                                                                float animatedValue = (float) animation.getAnimatedValue();
+
+                                                                // Puedes realizar acciones adicionales aquí si es necesario
+                                                                // Por ejemplo, cambiar la opacidad del TextView en función de su posición
+                                                                float alpha = 1 - (animatedValue / screenWidth); // Cálculo de la opacidad
+                                                                taskTextView.setAlpha(alpha); // Establecer la opacidad
+                                                            }
+                                                        });
+                                                        animator.start();
+
+                                                        // Después de la animación, quitar la tarea de la vista y reconstruir la vista
+                                                        animator.addListener(new AnimatorListenerAdapter() {
+                                                            @Override
+                                                            public void onAnimationEnd(Animator animation) {
+                                                                layout.removeView(taskTextView);
+                                                                // Reconstruir la vista
+                                                                // showElements();
+                                                            }
+                                                        });
+                                                    }
+                                                })
+                                                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        // Usuario hizo clic en Cancelar
+                                                        // Aquí puedes realizar alguna acción adicional si es necesario
+                                                    }
+                                                })
+                                                .show();
+                                    }
+                                    else {
                                     // Si no hubo deslizamiento, realiza la lógica de onClick
                                     // Si el texto actual es el nombre, cambiar a nombre + descripción
                                     if (taskTextView.getText().equals(nombre)) {
@@ -112,7 +201,7 @@ public class ShowTareas extends AppCompatActivity {
     //prueba para estilo de TaskTextView
 
     // Métodos para aplicar estilos específicos a los TextViews
-    private void applyTaskTextViewStyle(TextView textView, String text) {
+    private void applyTaskTextViewStyle(TextView textView, String text, int id_tarea) {
         // Establece el color de texto negro
         textView.setTextColor(getResources().getColor(android.R.color.black));
 
@@ -135,6 +224,7 @@ public class ShowTareas extends AppCompatActivity {
 
         // Establece el texto inicial al nombre de la tarea
         textView.setText(text);
+        textView.setId(id_tarea);
 
         // Otros estilos...
         // Puedes ajustar el tamaño del texto para dar más importancia al nombre
@@ -147,9 +237,27 @@ public class ShowTareas extends AppCompatActivity {
         GradientDrawable shape = new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);
         shape.setColor(getResources().getColor(android.R.color.white));
-        shape.setStroke(2, getResources().getColor(android.R.color.holo_orange_dark));
+        shape.setStroke(4, getResources().getColor(android.R.color.holo_orange_dark));
         shape.setCornerRadius(8);
 
         return shape;
+    }
+
+    private void marcarTareaComoRealizada(int id_tarea) {
+        SQLiteDatabase db = new dataBase(this).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("estado", 1); // 1 indica que la tarea está realizada
+
+        db.update("TAREAS", values, "id=?",new String[]{String.valueOf(id_tarea)});
+        db.close();
+    }
+
+
+    private void eliminarTarea(int id_tarea) {
+        SQLiteDatabase db = new dataBase(this).getWritableDatabase();
+        // Eliminar la tarea de la bbdd
+        db.delete("TAREAS", "id=?", new String[]{String.valueOf(id_tarea)});
+
+        db.close();
     }
 }
