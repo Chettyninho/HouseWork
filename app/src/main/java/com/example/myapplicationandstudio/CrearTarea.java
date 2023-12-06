@@ -15,10 +15,20 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
 
 public class CrearTarea extends AppCompatActivity {
     private DatePicker fechaLimitePicker;
@@ -123,6 +133,45 @@ public class CrearTarea extends AppCompatActivity {
         }
         // Cierra la base de datos
         db.close();
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //FIREBASE
+        // Obtiene la referencia a la base de datos de Firebase
+        FirebaseFirestore firestoreDb = FirebaseFirestore.getInstance();
+
+        // Crea un nuevo documento con datos de la tarea
+        Map<String, Object> tarea = new HashMap<>();
+        String userId = UUID.randomUUID().toString(); // Genera un ID único
+        tarea.put("id", userId);
+        tarea.put("nombre", nombre);
+        tarea.put("descripcion", descripcion);
+        tarea.put("fechaRealizacion", fecha);
+        tarea.put("estado", 0);
+
+        firestoreDb.collection("HouseWorks").document("treas")
+                .set(tarea);
+        CollectionReference tareasRef = firestoreDb.collection("treas");
+
+
+
+        tareasRef.add(tarea)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        // Tarea insertada con éxito
+                        mostrarToast("Tarea insertada con éxito en FireBase, ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error al insertar la tarea
+                        mostrarToast("Error al insertar la tarea en la base de datos de Firebase: " + e.getMessage());
+                        Log.e("ERROR_FIRESTORE", "Error al insertar la tarea en la base de datos", e);
+                    }
+                });
+
+
     }
 
     // Función auxiliar para mostrar Toast
